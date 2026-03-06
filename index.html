@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOORD Cafe | Dine Above the Clouds</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1A2A22',
+            sage: '#3B4F43',
+            cloud: '#F5F5F0',
+            sand: '#D4B895',
+          },
+          fontFamily: {
+            playfair: ['"Playfair Display"', 'serif'],
+            montserrat: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #F5F5F0; color: #1A2A22; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+    
+    /* Elegant Navbar */
+    #navbar { transition: all 0.5s ease; border-bottom: 1px solid transparent; }
+    #navbar.scrolled { background: rgba(245, 245, 240, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26, 42, 34, 0.1); padding-top: 1rem; padding-bottom: 1rem; }
+    #navbar.scrolled .nav-text { color: #1A2A22; }
+    #navbar.scrolled .logo-text { color: #1A2A22; }
+    
+    .nav-link { position: relative; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: currentColor; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Hero Parallax */
+    .hero-bg { background-image: linear-gradient(to bottom, rgba(26,42,34,0.4), rgba(26,42,34,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+
+    /* Fine Dining Menu Style */
+    .menu-row { border-bottom: 1px solid rgba(26, 42, 34, 0.1); transition: all 0.3s ease; }
+    .menu-row:hover { background: rgba(212, 184, 149, 0.1); padding-left: 1rem; border-left: 3px solid #D4B895; }
+
+    /* Masonry Gallery */
+    .gallery-grid { columns: 1; column-gap: 1rem; }
+    @media (min-width: 768px) { .gallery-grid { columns: 3; } }
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; transition: transform 0.8s ease; filter: brightness(0.9); }
+    .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
+
+    /* Form & Buttons */
+    .btn-outline { border: 1px solid currentColor; padding: 0.75rem 2rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s ease; }
+    .btn-outline:hover { background: #1A2A22; color: #F5F5F0; }
+    .btn-solid { background: #1A2A22; color: #D4B895; padding: 1rem 2.5rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s ease; }
+    .btn-solid:hover { background: #D4B895; color: #1A2A22; }
+    
+    .input-lux { width: 100%; background: transparent; border-bottom: 1px solid rgba(26,42,34,0.3); padding: 0.75rem 0; font-family: 'Montserrat'; font-size: 0.9rem; transition: border-color 0.3s ease; outline: none; }
+    .input-lux:focus { border-bottom-color: #D4B895; }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar" class="fixed w-full z-50 py-6 px-8 flex justify-between items-center text-cloud">
+    <div class="font-playfair text-2xl font-bold tracking-widest logo-text transition-colors duration-300">NOORD</div>
+    <div class="hidden md:flex gap-10 nav-text transition-colors duration-300">
+      <a href="#about" class="nav-link">The View</a>
+      <a href="#menu" class="nav-link">Culinary</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#reserve" class="nav-link text-sand">Reserve</a>
+    </div>
+  </nav>
+
+  <header class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 relative">
+    <p data-aos="fade-down" data-aos-duration="1000" class="text-sand text-xs tracking-[0.4em] uppercase mb-4">Munduk, Bali</p>
+    <h1 data-aos="zoom-in" data-aos-duration="1200" class="font-playfair text-6xl md:text-8xl text-cloud mb-6 drop-shadow-lg">Dine Above<br>The Clouds</h1>
+    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="text-cloud/80 max-w-lg text-sm leading-relaxed mb-10">An immersive culinary experience blending premium artisan flavors with the breathtaking high-altitude nature.</p>
+    <a href="#reserve" data-aos="fade-up" data-aos-delay="400" class="btn-outline text-cloud hover:border-sand">Book a Table</a>
+  </header>
+
+  <section id="about" class="py-24 px-8 max-w-6xl mx-auto text-center">
+    <h2 data-aos="fade-up" class="font-playfair text-4xl text-forest mb-16">The NOORD Experience</h2>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div data-aos="fade-up" data-aos-delay="100">
+        <div class="text-sand text-4xl mb-4">☁️</div>
+        <h3 class="font-playfair text-xl mb-3">Breathtaking Views</h3>
+        <p class="text-xs text-forest/70 leading-loose">Overlooking lush green hills that create a relaxing and refreshing atmosphere.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <div class="text-sand text-4xl mb-4">🥗</div>
+        <h3 class="font-playfair text-xl mb-3">Artisan Culinary</h3>
+        <p class="text-xs text-forest/70 leading-loose">From premium pulled pork to vegan delicacies, crafted with local ingredients.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300">
+        <div class="text-sand text-4xl mb-4">🎵</div>
+        <h3 class="font-playfair text-xl mb-3">Live Acoustic</h3>
+        <p class="text-xs text-forest/70 leading-loose">Enjoy your coffee accompanied by soothing live music blending with nature.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="py-24 px-8 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <p class="text-sand text-xs tracking-[0.3em] uppercase mb-2">Gastronomy</p>
+        <h2 class="font-playfair text-4xl text-forest">All Day Brunch</h2>
+      </div>
+
+      <div class="mb-12" data-aos="fade-up">
+        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2">SANDWICH & WRAP</h3>
+        
+        <div class="menu-row py-4 flex justify-between items-start gap-4">
+          <div>
+            <h4 class="font-playfair font-bold text-lg text-forest">Smoked Ham & Cheese</h4>
+            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md">Smoked ham, cheddar cheese, and mixed salad</p>
+          </div>
+          <span class="font-montserrat text-sm font-semibold text-sand">105</span>
+        </div>
+
+        <div class="menu-row py-4 flex justify-between items-start gap-4">
+          <div>
+            <h4 class="font-playfair font-bold text-lg text-forest">BBQ Pulled Pork</h4>
+            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md">Slow-cooked pulled pork with smoky BBQ sauce, pineapple sauce, and mixed salad</p>
+          </div>
+          <span class="font-montserrat text-sm font-semibold text-sand">115</span>
+        </div>
+      </div>
+
+      <div data-aos="fade-up">
+        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2 flex items-center gap-2">
+          VEGETARIAN & VEGAN <span class="text-green-600 text-lg">🌱</span>
+        </h3>
+        
+        <div class="menu-row py-4 flex justify-between items-start gap-4">
+          <div>
+            <h4 class="font-playfair font-bold text-lg text-forest">Avo Rosti Benedict</h4>
+            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md">Crispy shredded potato, eggs, smashed avocado, hollandaise sauce with tamarind dressing</p>
+          </div>
+          <span class="font-montserrat text-sm font-semibold text-sand">65</span>
+        </div>
+
+        <div class="menu-row py-4 flex justify-between items-start gap-4">
+          <div>
+            <h4 class="font-playfair font-bold text-lg text-forest">Nasi Goreng Vegetarian</h4>
+            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md">Indonesian style fried rice with spring onion, egg, and plant-based chicken satay</p>
+          </div>
+          <span class="font-montserrat text-sm font-semibold text-sand">55</span>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <p class="text-[0.65rem] text-forest/50 uppercase tracking-widest">Prices are in thousands of Rupiah & subject to tax</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="py-24 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto gallery-grid" data-aos="fade-up">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Cafe Interior">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Plated Food">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506461883276-594543d0e408?auto=format&fit=crop&w=600&q=80" alt="Mountain View">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Coffee">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1466978913421-bac2e565ca1a?auto=format&fit=crop&w=600&q=80" alt="Nature">
+      </div>
+    </div>
+  </section>
+
+  <section id="reserve" class="py-24 px-8 bg-forest text-cloud relative overflow-hidden">
+    <div class="max-w-4xl mx-auto relative z-10 grid md:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <h2 class="font-playfair text-4xl md:text-5xl mb-6">Secure Your Spot<br><em class="text-sand">in the Clouds</em></h2>
+        <p class="text-sm text-cloud/70 leading-relaxed mb-8">Experience the best viewpoint in Munduk. We highly recommend booking our Outdoor View Point seating in advance due to high demand.</p>
+        <p class="text-xs tracking-widest text-sand uppercase">Operation Hours: 08:00 - 20:00</p>
+      </div>
+      
+      <div class="bg-white/5 backdrop-blur-md p-8 border border-white/10" data-aos="fade-left">
+        <div class="space-y-6">
+          <input type="text" id="r-name" class="input-lux text-cloud placeholder-cloud/50" placeholder="Guest Name">
+          <input type="date" id="r-date" class="input-lux text-cloud placeholder-cloud/50" style="color-scheme: dark;">
+          <div class="grid grid-cols-2 gap-6">
+            <input type="number" id="r-pax" class="input-lux text-cloud placeholder-cloud/50" placeholder="No. of Guests" min="1">
+            <input type="time" id="r-time" class="input-lux text-cloud placeholder-cloud/50" style="color-scheme: dark;">
+          </div>
+          <select id="r-seating" class="input-lux text-cloud bg-transparent border-b">
+            <option value="" class="text-forest" disabled selected>Seating Preference...</option>
+            <option value="Outdoor View Point" class="text-forest">Outdoor (View Point)</option>
+            <option value="Indoor Cozy" class="text-forest">Indoor (Cozy Area)</option>
+          </select>
+          <button onclick="bookNoord()" class="btn-solid w-full mt-4">Confirm Reservation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 px-8 bg-[#121C16] text-center text-cloud/50 text-xs tracking-widest uppercase">
+    <p class="mb-4 text-sand font-playfair text-xl tracking-normal">NOORD Cafe</p>
+    <p>Munduk, Banjar, Buleleng Regency, Bali</p>
+    <p class="mt-8 opacity-50">© 2026 Developed by Gede Sugiartawan</p>
+  </footer>
+
+  <script>
+    AOS.init();
+
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+        nav.classList.remove('text-cloud');
+      } else {
+        nav.classList.remove('scrolled');
+        nav.classList.add('text-cloud');
+      }
+    });
+
+    function bookNoord() {
+      const name = document.getElementById('r-name').value;
+      const date = document.getElementById('r-date').value;
+      const pax = document.getElementById('r-pax').value;
+      const time = document.getElementById('r-time').value;
+      const seating = document.getElementById('r-seating').value;
+
+      if(!name || !date || !pax || !seating) {
+        alert("Please fill all the details to secure your spot.");
+        return;
+      }
+
+      const msg = `Greetings NOORD Cafe! ☁️\nI would like to make a reservation:\n\nName: ${name}\nDate: ${date}\nTime: ${time}\nGuests: ${pax} Pax\nPreference: *${seating}*\n\nPlease confirm availability. Thank you!`;
+      
+      // Ganti nomor WA di bawah ini kalau udah dapet nomor NOORD
+      window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
