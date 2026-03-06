@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NOORD Cafe - Cozy, scenic spot offering Western and Indonesian cuisine in Buleleng, Bali.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NOORD Cafe - Cozy, scenic spot offering Western and Indonesian cuisine in Buleleng, Bali." />
   <title>NOORD Cafe | Dine Above the Clouds</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -23,11 +25,11 @@
             forest: '#1A2A22',
             sage: '#3B4F43',
             cloud: '#F5F5F0',
-            sand: '#D4B895',
+            sand: '#D4B895'
           },
           fontFamily: {
             playfair: ['"Playfair Display"', 'serif'],
-            montserrat: ['"Montserrat"', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif']
           }
         }
       }
@@ -35,327 +37,350 @@
   </script>
 
   <style>
+    /* BASE */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background-color: #F5F5F0; color: #1A2A22; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-    
-    /* Elegant Navbar */
-    #navbar { transition: all 0.5s ease; border-bottom: 1px solid transparent; }
-    #navbar.scrolled { background: rgba(245, 245, 240, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(26, 42, 34, 0.1); padding-top: 1rem; padding-bottom: 1rem; }
+
+    /* NAVBAR */
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: all 0.4s ease; border-bottom: 1px solid transparent; }
+    #navbar.scrolled { background: rgba(245, 245, 240, 0.95); backdrop-filter: blur(15px); box-shadow: 0 4px 24px rgba(26, 42, 34, 0.08); }
     #navbar.scrolled .nav-text { color: #1A2A22; }
-    #navbar.scrolled .logo-text { color: #1A2A22; }
     #navbar.scrolled .lang-btn { border-color: #1A2A22; color: #1A2A22; }
     
-    .nav-link { position: relative; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; cursor: pointer; }
-    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: currentColor; transition: width 0.3s ease; }
+    .nav-link { font-weight: 500; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease; position: relative; padding-bottom: 0.25rem; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #D4B895; transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
 
-    /* Bilingual Toggle Button */
-    .lang-btn { border: 1px solid #F5F5F0; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; transition: all 0.3s ease; cursor: pointer; }
+    .lang-btn { border: 1px solid #F5F5F0; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer; }
     .lang-btn:hover { background: #D4B895; border-color: #D4B895; color: #1A2A22 !important; }
 
-    /* Hero Parallax */
-    .hero-bg { background-image: linear-gradient(to bottom, rgba(26,42,34,0.4), rgba(26,42,34,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+    /* HERO PARALLAX */
+    .hero-bg { background-image: linear-gradient(to bottom, rgba(26,42,34,0.3), rgba(26,42,34,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
 
-    /* Menu Style */
-    .menu-row { border-bottom: 1px solid rgba(26, 42, 34, 0.1); transition: all 0.3s ease; }
-    .menu-row:hover { background: rgba(212, 184, 149, 0.1); padding-left: 1rem; border-left: 3px solid #D4B895; }
+    /* BUTTONS */
+    .btn-primary { background: #1A2A22; color: #D4B895; font-weight: 600; text-transform: uppercase; padding: 0.875rem 2rem; border-radius: 100px; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(26, 42, 34, 0.2); cursor: pointer; letter-spacing: 0.1em; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26, 42, 34, 0.3); background: #D4B895; color: #1A2A22; }
+    .btn-outline { background: transparent; color: #1A2A22; border: 1.5px solid #1A2A22; padding: 0.75rem 1.5rem; border-radius: 100px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease; cursor: pointer; }
+    .btn-outline:hover { background: #1A2A22; color: #D4B895; }
 
-    /* Masonry Gallery */
-    .gallery-grid { columns: 1; column-gap: 1rem; }
-    @media (min-width: 768px) { .gallery-grid { columns: 3; } }
-    .gallery-item { break-inside: avoid; margin-bottom: 1rem; overflow: hidden; position: relative; border-radius: 12px; }
-    .gallery-item img { width: 100%; transition: transform 0.8s ease; filter: brightness(0.9); }
-    .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
+    /* CARDS & MENU GRID */
+    .feature-card { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 2rem; box-shadow: 0 4px 20px rgba(26, 42, 34, 0.05); transition: all 0.4s ease; cursor: pointer; }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(26, 42, 34, 0.1); border-color: #D4B895; }
+    
+    .menu-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(26, 42, 34, 0.08); transition: transform 0.3s ease; cursor: pointer;}
+    .menu-card:hover { transform: translateY(-8px); }
+    .menu-card img { transition: transform 0.6s ease; }
+    .menu-card:hover img { transform: scale(1.05); }
 
-    /* Form & Buttons */
-    .btn-outline { border: 1px solid currentColor; padding: 0.75rem 2rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s ease; cursor: pointer; }
-    .btn-outline:hover { background: #1A2A22; color: #F5F5F0; }
-    .btn-solid { background: #1A2A22; color: #D4B895; padding: 1rem 2.5rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s ease; cursor: pointer;}
-    .btn-solid:hover { background: #D4B895; color: #1A2A22; }
+    .menu-grid-item { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; padding: 1.25rem; box-shadow: 0 2px 12px rgba(26, 42, 34, 0.04); display: flex; align-items: center; gap: 1rem; transition: opacity 0.4s ease, transform 0.4s ease; opacity: 1; transform: translateY(0); }
+    .menu-grid-item:hover { transform: translateY(-4px); border-color: #D4B895; }
+    .menu-grid-item.fade-out { opacity: 0; transform: translateY(10px); }
+    .menu-hidden-container { max-height: 0; overflow: hidden; transition: max-height 0.8s ease; }
+    .menu-hidden-container.expanded { max-height: 2000px; }
+
+    /* MASONRY GALLERY */
+    .gallery-grid { columns: 3; column-gap: 1rem; }
+    @media (max-width: 1024px) { .gallery-grid { columns: 2; } }
+    @media (max-width: 640px) { .gallery-grid { columns: 1; } }
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; border-radius: 16px; overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item img { width: 100%; display: block; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,42,34,0.8), transparent); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: flex-end; padding: 1.5rem; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* UTILITIES */
+    .filter-btn { padding: 0.5rem 1.25rem; border-radius: 100px; border: 1.5px solid rgba(26, 42, 34, 0.2); font-size: 0.75rem; font-weight: 600; transition: all 0.3s ease; }
+    .filter-btn.active, .filter-btn:hover { background: #1A2A22; color: #D4B895; border-color: #1A2A22; }
+    #lightbox { display: none; position: fixed; inset: 0; background: rgba(26, 42, 34, 0.95); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    #lightbox.active { display: flex; }
+    
     .input-lux { width: 100%; background: transparent; border-bottom: 1px solid rgba(26,42,34,0.3); padding: 0.75rem 0; font-family: 'Montserrat'; font-size: 0.9rem; transition: border-color 0.3s ease; outline: none; }
     .input-lux:focus { border-bottom-color: #D4B895; }
   </style>
 </head>
 <body>
 
-  <nav id="navbar" class="fixed w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center text-cloud">
-    <div class="font-playfair text-2xl font-bold tracking-widest logo-text transition-colors duration-300">NOORD</div>
-    <div class="flex items-center gap-6 md:gap-10 nav-text transition-colors duration-300">
-      <div class="hidden md:flex gap-8 items-center">
-        <a href="#about" class="nav-link lang-en">The Vibe</a>
-        <a href="#about" class="nav-link lang-id hidden">Suasana</a>
-        <a href="#menu" class="nav-link lang-en">Menu</a>
-        <a href="#menu" class="nav-link lang-id hidden">Menu</a>
-        <a href="#gallery" class="nav-link lang-en">Gallery</a>
-        <a href="#gallery" class="nav-link lang-id hidden">Galeri</a>
-      </div>
-      <button onclick="toggleLang()" class="lang-btn nav-text text-cloud">
-        <span id="lang-indicator">ID</span>
-      </button>
-      <a href="#reserve" class="nav-link text-sand font-bold lang-en hidden md:block">Reserve</a>
-      <a href="#reserve" class="nav-link text-sand font-bold lang-id hidden md:hidden lg:block">Reservasi</a>
+<nav id="navbar" class="py-4 px-6 md:px-12 nav-text text-cloud">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="#hero" class="font-playfair text-2xl font-bold tracking-widest logo-text transition-colors duration-300">NOORD</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="nav-link"><span class="lang-en">The Vibe</span><span class="lang-id hidden">Suasana</span></a>
+      <a href="#menu" class="nav-link"><span class="lang-en">Menu</span><span class="lang-id hidden">Menu</span></a>
+      <a href="#gallery" class="nav-link"><span class="lang-en">Gallery</span><span class="lang-id hidden">Galeri</span></a>
+      <button onclick="toggleLang()" class="lang-btn"><span id="lang-indicator">ID</span></button>
+      <a href="#reserve" class="btn-primary text-xs py-2.5 px-6"><span class="lang-en">Reserve</span><span class="lang-id hidden">Reservasi</span></a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <header class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 relative">
-    <p data-aos="fade-down" data-aos-duration="1000" class="text-sand text-xs tracking-[0.4em] uppercase mb-4 font-semibold">Wanagiri 88, Buleleng</p>
+<section id="hero" class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 relative">
+  <p data-aos="fade-down" class="text-sand text-xs tracking-[0.4em] uppercase mb-4 font-semibold">Wanagiri 88, Buleleng</p>
+  <h1 data-aos="zoom-in" data-aos-duration="1200" class="font-playfair text-6xl md:text-8xl text-cloud mb-6 drop-shadow-lg">
+    <span class="lang-en block">Dine Above<br>The Clouds</span>
+    <span class="lang-id hidden">Bersantap di<br>Atas Awan</span>
+  </h1>
+  <p data-aos="fade-up" data-aos-delay="200" class="text-cloud/90 max-w-lg text-sm leading-relaxed mb-10">
+    <span class="lang-en block">An immersive culinary experience blending premium Western & Indonesian flavors with breathtaking high-altitude nature.</span>
+    <span class="lang-id hidden">Pengalaman kuliner imersif yang memadukan rasa Western & Nusantara premium dengan keindahan alam dataran tinggi.</span>
+  </p>
+  <a href="#menu" data-aos="fade-up" data-aos-delay="400" class="btn-outline border-cloud text-cloud hover:bg-cloud hover:text-forest">
+    <span class="lang-en">Explore Menu</span>
+    <span class="lang-id hidden">Lihat Menu</span>
+  </a>
+</section>
+
+<section id="about" class="py-20 px-6 md:px-12 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <p class="text-sand text-xs tracking-[0.3em] uppercase mb-4"><span class="lang-en">The Concept</span><span class="lang-id hidden">Konsep Kami</span></p>
+      <h2 class="font-playfair text-4xl text-forest"><span class="lang-en">"A View That Slows You Down"</span><span class="lang-id hidden">"Pemandangan yang Memanjakan Waktu"</span></h2>
+    </div>
     
-    <h1 data-aos="zoom-in" data-aos-duration="1200" class="font-playfair text-6xl md:text-8xl text-cloud mb-6 drop-shadow-lg leading-tight">
-      <span class="lang-en block">Dine Above<br>The Clouds</span>
-      <span class="lang-id hidden">Bersantap di<br>Atas Awan</span>
-    </h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="feature-card text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="text-4xl mb-4">☁️</div>
+        <h3 class="font-playfair text-xl font-bold text-forest mb-2"><span class="lang-en">Scenic & Cozy</span><span class="lang-id hidden">Tenang & Estetik</span></h3>
+        <p class="text-sm text-forest/70"><span class="lang-en">Breathtaking 2-level semi-outdoor seating perfectly integrated with nature.</span><span class="lang-id hidden">Area duduk semi-outdoor 2 lantai yang menyatu sempurna dengan alam.</span></p>
+      </div>
+      <div class="feature-card text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-4xl mb-4">🍝</div>
+        <h3 class="font-playfair text-xl font-bold text-forest mb-2"><span class="lang-en">Western & Local</span><span class="lang-id hidden">Western & Nusantara</span></h3>
+        <p class="text-sm text-forest/70"><span class="lang-en">Premium dishes complete with Vegan & Vegetarian options.</span><span class="lang-id hidden">Hidangan premium dilengkapi dengan pilihan menu Vegan & Vegetarian.</span></p>
+      </div>
+      <div class="feature-card text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-4xl mb-4">☕</div>
+        <h3 class="font-playfair text-xl font-bold text-forest mb-2"><span class="lang-en">Artisan Sweets</span><span class="lang-id hidden">Kopi & Manisan</span></h3>
+        <p class="text-sm text-forest/70"><span class="lang-en">Sip our signature Tiramisu Coffee paired with a slice of classic Cheesecake.</span><span class="lang-id hidden">Nikmati Tiramisu Coffee andalan kami dipadukan dengan sepotong Cheesecake.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signature" class="py-20 px-6 md:px-12 bg-cloud">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="font-playfair text-4xl text-forest"><span class="lang-en">Chef's Signature</span><span class="lang-id hidden">Andalan Koki</span></h2>
+    </div>
     
-    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="text-cloud/90 max-w-lg text-sm leading-relaxed mb-10">
-      <span class="lang-en block">An immersive culinary experience blending premium Western & Indonesian flavors with breathtaking high-altitude nature.</span>
-      <span class="lang-id hidden">Pengalaman kuliner imersif yang memadukan hidangan premium Western & Nusantara dengan keindahan alam dataran tinggi.</span>
-    </p>
+    <div class="swiper menuSwiper pb-12" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="menu-card">
+            <div class="h-56"><img src="https://images.unsplash.com/photo-1544145945-f904253d0c71?auto=format&fit=crop&w=600&q=80" alt="Food" class="w-full h-full object-cover"></div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-2"><h3 class="font-playfair font-bold text-forest text-xl">Chicken Parmigiana</h3><span class="bg-forest text-sand text-xs font-bold px-3 py-1 rounded-full">85k</span></div>
+              <p class="text-sm text-forest/60"><span class="lang-en">Crispy breaded chicken topped with rich tomato sauce and melted cheese.</span><span class="lang-id hidden">Ayam filet renyah dengan saus tomat kaya rasa dan lelehan keju.</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="menu-card">
+            <div class="h-56"><img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=80" alt="Drink" class="w-full h-full object-cover"></div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-2"><h3 class="font-playfair font-bold text-forest text-xl">Tiramisu Coffee</h3><span class="bg-forest text-sand text-xs font-bold px-3 py-1 rounded-full">45k</span></div>
+              <p class="text-sm text-forest/60"><span class="lang-en">Signature espresso blended with mascarpone flavor and cocoa.</span><span class="lang-id hidden">Espresso khas dipadu dengan rasa mascarpone dan taburan kakao.</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="menu-card">
+            <div class="h-56"><img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=600&q=80" alt="Bowl" class="w-full h-full object-cover"></div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-2"><h3 class="font-playfair font-bold text-forest text-xl">Tropical Smoothie Bowl</h3><span class="bg-forest text-sand text-xs font-bold px-3 py-1 rounded-full">50k</span></div>
+              <p class="text-sm text-forest/60"><span class="lang-en">Fresh blended dragon fruit & banana topped with granola.</span><span class="lang-id hidden">Paduan buah naga & pisang segar dengan topping granola.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="py-20 px-6 md:px-12 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <h2 class="font-playfair text-4xl text-forest"><span class="lang-en">Full Menu</span><span class="lang-id hidden">Menu Lengkap</span></h2>
+    </div>
+
+    <div class="flex flex-wrap gap-2 justify-center mb-10" id="menu-filters" data-aos="fade-up">
+      <button class="filter-btn active" data-cat="all"><span class="lang-en">All Menu</span><span class="lang-id hidden">Semua</span></button>
+      <button class="filter-btn" data-cat="mains">🍝 <span class="lang-en">Mains</span><span class="lang-id hidden">Utama</span></button>
+      <button class="filter-btn" data-cat="vegan">🌱 Vegan / Veg</button>
+      <button class="filter-btn" data-cat="sweets">🍰 Sweets & Coffee</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="menu-grid" data-aos="fade-up">
+      <div class="menu-grid-item" data-cat="mains"><div class="text-2xl">🍗</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Chicken Parmigiana</h4><span>85k</span></div><p class="text-xs text-forest/60 mt-1">Crispy breaded chicken with cheese.</p></div></div>
+      <div class="menu-grid-item" data-cat="mains"><div class="text-2xl">🍝</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Spaghetti Carbonara</h4><span>75k</span></div><p class="text-xs text-forest/60 mt-1">Classic creamy pasta with smoked beef.</p></div></div>
+      <div class="menu-grid-item" data-cat="vegan"><div class="text-2xl">🌱</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Tempeh Black Pepper</h4><span>55k</span></div><p class="text-xs text-forest/60 mt-1">Stir-fry tempeh with bell peppers & rice.</p></div></div>
+      <div class="menu-grid-item" data-cat="sweets"><div class="text-2xl">☕</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Tiramisu Coffee</h4><span>45k</span></div><p class="text-xs text-forest/60 mt-1">Signature espresso with mascarpone.</p></div></div>
+      <div class="menu-grid-item" data-cat="sweets"><div class="text-2xl">🍰</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Classic Cheesecake</h4><span>40k</span></div><p class="text-xs text-forest/60 mt-1">Rich, smooth dessert with buttery crust.</p></div></div>
+      <div class="menu-grid-item" data-cat="vegan"><div class="text-2xl">🍓</div><div class="flex-1"><div class="flex justify-between font-bold text-forest"><h4>Smoothie Bowl</h4><span>50k</span></div><p class="text-xs text-forest/60 mt-1">Fresh dragon fruit topped with granola.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6 md:px-12 bg-forest text-cloud">
+  <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+    <div class="text-sand text-3xl mb-4">★★★★★</div>
+    <h2 class="font-playfair text-4xl mb-2">4.9 / 5.0</h2>
+    <p class="text-sm text-cloud/70 mb-10 tracking-widest uppercase"><span class="lang-en">Based on 1,100+ Google Reviews</span><span class="lang-id hidden">Berdasarkan 1.100+ Ulasan Google</span></p>
     
-    <a href="#reserve" data-aos="fade-up" data-aos-delay="400" class="btn-outline text-cloud hover:border-sand">
-      <span class="lang-en">Book a Table</span>
-      <span class="lang-id hidden">Pesan Meja</span>
-    </a>
-  </header>
+    <div class="swiper menuSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-6 border border-cloud/20 rounded-2xl bg-white/5">
+          <p class="italic mb-4">"The view that slows you down. Absolutely stunning place to enjoy coffee above the clouds. Highly recommended!"</p>
+          <p class="font-bold text-sand text-sm">- Sarah Jenkins</p>
+        </div>
+        <div class="swiper-slide p-6 border border-cloud/20 rounded-2xl bg-white/5">
+          <p class="italic mb-4">"Makanan western dan lokalnya sangat enak. Suasana cozy banget buat lari dari hiruk pikuk kota."</p>
+          <p class="font-bold text-sand text-sm">- Budi Pratama</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section id="about" class="py-24 px-8 max-w-6xl mx-auto text-center">
-    <p class="text-sand text-xs tracking-[0.3em] uppercase mb-4 lang-en">The Concept</p>
-    <p class="text-sand text-xs tracking-[0.3em] uppercase mb-4 lang-id hidden">Konsep Kami</p>
+<section id="gallery" class="py-20 px-6 md:px-12 bg-cloud">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <h2 class="font-playfair text-4xl text-forest"><span class="lang-en">Visual Journey</span><span class="lang-id hidden">Galeri Visual</span></h2>
+    </div>
+    <div class="gallery-grid" data-aos="fade-up">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80"><div class="gallery-overlay"><span class="text-cloud text-xs tracking-widest uppercase">Culinary</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1506461883276-594543d0e408?auto=format&fit=crop&w=600&q=80"><div class="gallery-overlay"><span class="text-cloud text-xs tracking-widest uppercase">The View</span></div></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"><div class="gallery-overlay"><span class="text-cloud text-xs tracking-widest uppercase">Cozy Space</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" class="max-w-[90%] max-h-[90vh] rounded-xl shadow-2xl">
+</div>
+
+<section id="reserve" class="py-20 px-6 md:px-12 bg-white">
+  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div data-aos="fade-right">
+      <h2 class="font-playfair text-4xl text-forest mb-4">
+        <span class="lang-en">Secure Your Spot</span><span class="lang-id hidden">Pesan Meja</span>
+      </h2>
+      <p class="text-sm text-forest/70 mb-6 leading-relaxed">
+        <span class="lang-en">Due to high demand for our outdoor view point, we recommend booking in advance.</span>
+        <span class="lang-id hidden">Karena tingginya minat untuk area outdoor kami, kami menyarankan reservasi lebih awal.</span>
+      </p>
+      <div class="text-xs tracking-widest text-sand uppercase font-bold mb-2">Hours / Jam Buka:</div>
+      <p class="text-sm text-forest/70 mb-1">Weekdays: 11 AM - 7 PM</p>
+      <p class="text-sm text-forest/70">Weekends: 11 AM - 8 PM</p>
+    </div>
     
-    <h2 data-aos="fade-up" class="font-playfair text-3xl md:text-4xl text-forest mb-6">
-      <span class="lang-en">"A View That Slows You Down"</span>
-      <span class="lang-id hidden">"Pemandangan yang Memanjakan Waktu"</span>
-    </h2>
-    <p data-aos="fade-up" class="text-sm text-forest/70 max-w-2xl mx-auto mb-16 leading-loose">
-      <span class="lang-en">Escape the hustle. Our 2-level semi-outdoor space is designed to be your cozy sanctuary in Munduk, offering a relaxing atmosphere overlooking the lush green hills.</span>
-      <span class="lang-id hidden">Menjauhlah dari hiruk-pikuk. Ruang semi-outdoor 2 lantai kami dirancang menjadi tempat bersantai Anda di Munduk, menawarkan atmosfer tenang dengan pemandangan perbukitan hijau.</span>
-    </p>
-
-    <div class="grid md:grid-cols-3 gap-12">
-      <div data-aos="fade-up" data-aos-delay="100">
-        <div class="text-sand text-4xl mb-4">☁️</div>
-        <h3 class="font-playfair text-xl mb-3 lang-en">Scenic & Cozy</h3>
-        <h3 class="font-playfair text-xl mb-3 lang-id hidden">Tenang & Estetik</h3>
-        <p class="text-xs text-forest/70 leading-loose lang-en">Breathtaking 2-level semi-outdoor seating areas perfectly integrated with nature.</p>
-        <p class="text-xs text-forest/70 leading-loose lang-id hidden">Area duduk semi-outdoor 2 lantai yang menyatu sempurna dengan keindahan alam.</p>
-      </div>
-      <div data-aos="fade-up" data-aos-delay="200">
-        <div class="text-sand text-4xl mb-4">🍝</div>
-        <h3 class="font-playfair text-xl mb-3 lang-en">Western & Local</h3>
-        <h3 class="font-playfair text-xl mb-3 lang-id hidden">Western & Nusantara</h3>
-        <p class="text-xs text-forest/70 leading-loose lang-en">From premium Chicken Parmigiana to local delights, complete with Vegan & Vegetarian options.</p>
-        <p class="text-xs text-forest/70 leading-loose lang-id hidden">Dari Chicken Parmigiana premium hingga sajian lokal, dilengkapi pilihan menu Vegan & Vegetarian.</p>
-      </div>
-      <div data-aos="fade-up" data-aos-delay="300">
-        <div class="text-sand text-4xl mb-4">☕</div>
-        <h3 class="font-playfair text-xl mb-3 lang-en">Artisan Coffee & Sweets</h3>
-        <h3 class="font-playfair text-xl mb-3 lang-id hidden">Kopi & Pencuci Mulut</h3>
-        <p class="text-xs text-forest/70 leading-loose lang-en">Sip our signature Tiramisu Coffee paired perfectly with a slice of classic Cheesecake.</p>
-        <p class="text-xs text-forest/70 leading-loose lang-id hidden">Nikmati Tiramisu Coffee andalan kami yang dipadukan sempurna dengan sepotong Cheesecake.</p>
+    <div class="bg-cloud p-8 border border-forest/10 rounded-2xl" data-aos="fade-left">
+      <div class="space-y-5">
+        <input type="text" id="r-name" class="input-lux text-forest placeholder-forest/50" placeholder="Name / Nama">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="date" id="r-date" class="input-lux text-forest">
+          <input type="number" id="r-pax" class="input-lux text-forest placeholder-forest/50" placeholder="Guests / Pax">
+        </div>
+        <select id="r-seating" class="input-lux text-forest bg-transparent">
+          <option value="" disabled selected>Seating Area...</option>
+          <option value="Semi-Outdoor">Semi-Outdoor (View)</option>
+          <option value="Indoor Cozy">Indoor (Cozy)</option>
+        </select>
+        <button onclick="bookNoord()" class="btn-primary w-full justify-center mt-4">
+          <span class="lang-en">Book via WhatsApp</span><span class="lang-id hidden">Kirim via WA</span>
+        </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="menu" class="py-24 px-8 bg-white">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <p class="text-sand text-xs tracking-[0.3em] uppercase mb-2 lang-en">Gastronomy</p>
-        <p class="text-sand text-xs tracking-[0.3em] uppercase mb-2 lang-id hidden">Gastronomi</p>
-        <h2 class="font-playfair text-4xl text-forest lang-en">Menu Highlights</h2>
-        <h2 class="font-playfair text-4xl text-forest lang-id hidden">Menu Unggulan</h2>
-      </div>
+<section class="py-20 px-6 bg-forest text-center text-cloud">
+  <h2 class="font-playfair text-3xl mb-4">Follow Our Journey</h2>
+  <a href="https://instagram.com/noord.bali" target="_blank" class="inline-block bg-sand text-forest font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform">@noord.bali</a>
+</section>
 
-      <div class="mb-12" data-aos="fade-up">
-        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2 lang-en">MAINS & SAVORY</h3>
-        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2 lang-id hidden">HIDANGAN UTAMA</h3>
-        
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Chicken Parmigiana</h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Crispy breaded chicken topped with rich tomato sauce and melted cheese.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Ayam filet renyah dengan saus tomat kaya rasa dan lelehan keju di atasnya.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">85</span>
-        </div>
-
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Tempeh Black Pepper <span class="text-green-600 text-sm ml-1">🌱 Vegan</span></h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Stir-fry tempeh with bell peppers and black pepper sauce, served with steamed rice.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Tumis tempe dengan paprika dan saus lada hitam, disajikan dengan nasi hangat.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">55</span>
-        </div>
-
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Spaghetti Carbonara</h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Classic creamy pasta with smoked beef and parmesan cheese.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Pasta klasik creamy dengan daging asap dan taburan keju parmesan.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">75</span>
-        </div>
-      </div>
-
-      <div data-aos="fade-up">
-        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2 lang-en">SWEETS & BEVERAGE</h3>
-        <h3 class="font-bold text-sm tracking-widest text-forest mb-6 border-b pb-2 lang-id hidden">PENCUCI MULUT & MINUMAN</h3>
-        
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Tiramisu Coffee</h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Signature espresso blended with mascarpone flavor and dusted with cocoa.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Espresso khas kami yang dipadu dengan rasa mascarpone dan taburan kakao.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">45</span>
-        </div>
-
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Classic Cheesecake</h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Rich, smooth, and creamy dessert with a buttery graham cracker crust.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Kue keju yang lembut dan kaya rasa dengan dasar biskuit mentega.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">40</span>
-        </div>
-
-        <div class="menu-row py-4 flex justify-between items-start gap-4">
-          <div>
-            <h4 class="font-playfair font-bold text-lg text-forest">Tropical Smoothie Bowl <span class="text-green-600 text-sm ml-1">🌱 Veg</span></h4>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-en">Fresh blended dragon fruit & banana topped with granola and local fruits.</p>
-            <p class="text-xs text-forest/60 mt-1 leading-relaxed max-w-md lang-id hidden">Paduan buah naga & pisang segar dengan topping granola dan buah lokal.</p>
-          </div>
-          <span class="font-montserrat text-sm font-semibold text-sand">50</span>
-        </div>
-      </div>
-      
-      <div class="text-center mt-12">
-        <p class="text-[0.65rem] text-forest/50 uppercase tracking-widest lang-en">Prices are in thousands of Rupiah & subject to tax</p>
-        <p class="text-[0.65rem] text-forest/50 uppercase tracking-widest lang-id hidden">Harga dalam ribuan Rupiah & belum termasuk pajak</p>
+<footer class="py-16 px-6 md:px-12 bg-[#121C16] text-cloud/50 text-sm">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 border-b border-cloud/10 pb-10 mb-8">
+    <div>
+      <h3 class="font-playfair text-2xl text-sand mb-4">NOORD</h3>
+      <p class="mb-2">Jl. Raya Wanagiri 88, Buleleng, Bali</p>
+      <p>Phone: +62 822-8787-4100</p>
+    </div>
+    <div>
+      <h4 class="text-sand font-bold tracking-widest uppercase mb-4">Links</h4>
+      <p><a href="#menu" class="hover:text-white">Menu</a></p>
+      <p><a href="#gallery" class="hover:text-white">Gallery</a></p>
+    </div>
+    <div>
+      <h4 class="text-sand font-bold tracking-widest uppercase mb-4">Location</h4>
+      <div class="h-32 w-full rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.50201416972!2d115.10185957500135!3d-8.252684991780517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd185002ba1eb39%3A0xcb161726a4220b33!2sNOORD%20Cafe!5e0!3m2!1sen!2sid!4v1709722300000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="text-center text-xs tracking-widest uppercase opacity-40">
+    © 2026 Developed by Gede Sugiartawan
+  </div>
+</footer>
 
-  <section id="gallery" class="py-24 px-4 md:px-8">
-    <div class="max-w-6xl mx-auto gallery-grid" data-aos="fade-up">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Delicious Food">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1506461883276-594543d0e408?auto=format&fit=crop&w=600&q=80" alt="Munduk View">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Cafe Interior">
-      </div>
-    </div>
-  </section>
+<script>
+  // 1. Init AOS
+  AOS.init({ duration: 800, once: true });
 
-  <section id="reserve" class="py-24 px-8 bg-forest text-cloud relative overflow-hidden">
-    <div class="max-w-4xl mx-auto relative z-10 grid md:grid-cols-2 gap-16 items-center">
-      <div data-aos="fade-right">
-        <h2 class="font-playfair text-4xl md:text-5xl mb-6">
-          <span class="lang-en">Secure Your Spot<br><em class="text-sand">in the Clouds</em></span>
-          <span class="lang-id hidden">Pesan Meja Anda<br><em class="text-sand">di Atas Awan</em></span>
-        </h2>
-        <p class="text-sm text-cloud/70 leading-relaxed mb-8 lang-en">Experience the best viewpoint in Munduk. We highly recommend booking our Semi-Outdoor seating in advance due to high demand.</p>
-        <p class="text-sm text-cloud/70 leading-relaxed mb-8 lang-id hidden">Nikmati pemandangan terbaik di Munduk. Kami sangat menyarankan Anda untuk memesan kursi Semi-Outdoor lebih awal karena tingginya permintaan.</p>
-        
-        <div class="text-xs tracking-widest text-sand uppercase space-y-2">
-          <p class="lang-en">Hours: Mon-Fri (11 AM - 7 PM)</p>
-          <p class="lang-id hidden">Buka: Sen-Jum (11.00 - 19.00)</p>
-          <p class="lang-en">Weekend: Sat-Sun (11 AM - 8 PM)</p>
-          <p class="lang-id hidden">Akhir Pekan: Sab-Min (11.00 - 20.00)</p>
-        </div>
-      </div>
-      
-      <div class="bg-white/5 backdrop-blur-md p-8 border border-white/10 rounded-2xl" data-aos="fade-left">
-        <div class="space-y-6">
-          <input type="text" id="r-name" class="input-lux text-cloud placeholder-cloud/50" placeholder="Name / Nama">
-          <input type="date" id="r-date" class="input-lux text-cloud placeholder-cloud/50" style="color-scheme: dark;">
-          <div class="grid grid-cols-2 gap-6">
-            <input type="number" id="r-pax" class="input-lux text-cloud placeholder-cloud/50" placeholder="Guests / Pax" min="1">
-            <input type="time" id="r-time" class="input-lux text-cloud placeholder-cloud/50" style="color-scheme: dark;">
-          </div>
-          <select id="r-seating" class="input-lux text-cloud bg-transparent border-b">
-            <option value="" class="text-forest" disabled selected>Seating Area...</option>
-            <option value="Semi-Outdoor (Upper Level)" class="text-forest">Semi-Outdoor (Lantai Atas / View)</option>
-            <option value="Indoor Cozy" class="text-forest">Indoor (Area Nyaman / Cozy)</option>
-          </select>
-          <button onclick="bookNoord()" class="btn-solid w-full mt-4">
-            <span class="lang-en">Confirm via WhatsApp</span>
-            <span class="lang-id hidden">Kirim via WhatsApp</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+  // 2. Init Swiper
+  new Swiper('.menuSwiper', { slidesPerView: 1.2, spaceBetween: 20, breakpoints: { 768: { slidesPerView: 2.2 } } });
 
-  <footer class="py-12 px-8 bg-[#121C16] text-center text-cloud/50 text-xs tracking-widest uppercase">
-    <p class="mb-4 text-sand font-playfair text-xl tracking-normal">NOORD Cafe</p>
-    <p>Jl. Raya Wanagiri 88, Buleleng, Bali</p>
-    <div class="flex justify-center gap-6 my-6">
-      <a href="https://instagram.com/noord.bali" target="_blank" class="hover:text-sand transition-colors">IG: @noord.bali</a>
-      <span>|</span>
-      <a href="tel:+6282287874100" class="hover:text-sand transition-colors">Call: +62 822-8787-4100</a>
-    </div>
-    <p class="opacity-50">© 2026 Developed by Gede Sugiartawan</p>
-  </footer>
+  // 3. Navbar Scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
 
-  <script>
-    // Inisialisasi Animasi Scroll
-    AOS.init();
+  // 4. Bilingual Logic
+  let currentLang = 'en';
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'id' : 'en';
+    document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', currentLang === 'id'));
+    document.querySelectorAll('.lang-id').forEach(el => el.classList.toggle('hidden', currentLang === 'en'));
+    document.getElementById('lang-indicator').innerText = currentLang === 'en' ? 'ID' : 'EN';
+  }
 
-    // Efek Transparan Navbar saat di-scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-        nav.classList.remove('text-cloud');
-      } else {
-        nav.classList.remove('scrolled');
-        nav.classList.add('text-cloud');
-      }
+  // 5. Menu Filter Smooth Fade
+  document.querySelectorAll('#menu-filters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const cat = this.getAttribute('data-cat');
+      document.querySelectorAll('#menu-filters .filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const items = document.querySelectorAll('.menu-grid-item');
+      items.forEach(item => item.classList.add('fade-out'));
+      setTimeout(() => {
+        items.forEach(item => {
+          if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+            item.style.display = 'flex';
+            setTimeout(() => item.classList.remove('fade-out'), 50);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }, 300);
     });
+  });
 
-    // LOGIKA BILINGUAL (Bahas Inggris / Indonesia)
-    let currentLang = 'en';
-    function toggleLang() {
-      // Ubah state
-      currentLang = currentLang === 'en' ? 'id' : 'en';
-      
-      // Sembunyikan/Tampilkan Elemen Bahasa Inggris
-      document.querySelectorAll('.lang-en').forEach(el => {
-        if(currentLang === 'en') el.classList.remove('hidden');
-        else el.classList.add('hidden');
-      });
+  // 6. Lightbox
+  function openLightbox(el) { document.getElementById('lightbox-img').src = el.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
 
-      // Sembunyikan/Tampilkan Elemen Bahasa Indonesia
-      document.querySelectorAll('.lang-id').forEach(el => {
-        if(currentLang === 'id') el.classList.remove('hidden');
-        else el.classList.add('hidden');
-      });
+  // 7. WA Booking
+  function bookNoord() {
+    const name = document.getElementById('r-name').value;
+    const date = document.getElementById('r-date').value;
+    const pax = document.getElementById('r-pax').value;
+    const seat = document.getElementById('r-seating').value;
+    if(!name || !date || !pax || !seat) { alert("Please fill all details!"); return; }
+    const msg = `Greetings NOORD Cafe! ☁️\nReservation:\nName: ${name}\nDate: ${date}\nGuests: ${pax}\nArea: *${seat}*\nPlease confirm!`;
+    window.open(`https://wa.me/6282287874100?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+</script>
 
-      // Ganti teks tombol indikator
-      document.getElementById('lang-indicator').innerText = currentLang === 'en' ? 'ID' : 'EN';
-    }
-
-    // Fungsi Submit Reservasi WA (Pakai nomor asli)
-    function bookNoord() {
-      const name = document.getElementById('r-name').value;
-      const date = document.getElementById('r-date').value;
-      const pax = document.getElementById('r-pax').value;
-      const time = document.getElementById('r-time').value;
-      const seating = document.getElementById('r-seating').value;
-
-      if(!name || !date || !pax || !seating) {
-        alert(currentLang === 'en' ? "Please fill all details!" : "Mohon lengkapi semua data!");
-        return;
-      }
-
-      // Format Pesan WA
-      const msg = `Greetings NOORD Cafe! ☁️\nI would like to make a reservation:\n\nName: ${name}\nDate: ${date}\nTime: ${time}\nGuests: ${pax} Pax\nPreference: *${seating}*\n\nPlease confirm availability. Thank you!`;
-      
-      // Menggunakan Nomor HP NOORD yang lu kasih
-      window.open(`https://wa.me/6282287874100?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-  </script>
 </body>
 </html>
